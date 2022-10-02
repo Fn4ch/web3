@@ -1,5 +1,4 @@
 ### Web 3.0 test app
-## выполнено 7 пунктов из 9
 ## Project setup
 ```
 cd web3
