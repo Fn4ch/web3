@@ -2,7 +2,7 @@
     <div class="encryption">
         <h2>Sha256 encrypt</h2>
         <textarea placeholder="Enter text to encode" v-model="message" ></textarea>
-        <button @click="encode" class="encode-button"> Закодировать</button>
+        <button @click="encode" class="encode-button">Encrypt</button>
         <textarea readonly v-model="encoded" ></textarea>
     </div>
 </template>

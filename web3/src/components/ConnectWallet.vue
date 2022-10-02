@@ -6,19 +6,23 @@
 
 <script lang="ts">
   import { defineComponent } from "vue"
-  import { mapMutations } from "vuex"
+  import { mapActions, mapMutations } from "vuex"
   import Web3 from "web3"
 
   export default defineComponent({
     methods: {      
       async walletConnection() {      
       const web3 = new Web3(Web3.givenProvider || 'http://localhost:7545')      
-      const accounts = await web3.eth.requestAccounts() 
+      const accounts = await web3.eth.requestAccounts()     
       this.$store.commit('setWalletAddres', accounts)
+      this.getWalletBalancePolygon()
       },
       ...mapMutations({
-         setWalletAddres: 'setWalletAddres',
-      })    
+        setWalletAddres: 'setWalletAddres',        
+      }),
+      ...mapActions({
+        getWalletBalancePolygon: 'getWalletBalancePolygon'
+      })
     },
     mounted(){
       this.walletConnection()

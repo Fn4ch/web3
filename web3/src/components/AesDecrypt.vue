@@ -2,9 +2,9 @@
     <div>
         <div class="encryption">
             <h2>Aes decrypt</h2>
-            <textarea placeholder="Enter text to decode" v-model="message" ></textarea>
+            <textarea placeholder="Enter encrypted aes message" v-model="message" ></textarea>
             <input class="secret" v-model="secretWord" placeholder="Enter the secret word"/>
-            <button @click="decode" class="encode-button"> Закодировать</button>
+            <button @click="decode" class="encode-button">Decrypt</button>
             <textarea readonly v-model="decoded" ></textarea>
         </div>
     </div>
@@ -24,10 +24,14 @@ export default defineComponent({
     },
     methods:{
         decode(){
+            if(this.secretWord.length != 16){
+                alert('Length of secret key should be 16 for 128 bits key size')
+            }
             if(this.message){
-            this.decoded = CryptoJS.AES.decrypt(this.message, this.secretWord).toString()
-        }
-        alert('Textarea is empty') 
+            const bytes = CryptoJS.AES.decrypt(this.message, this.secretWord)
+            this.decoded = JSON.parse(bytes.toString(CryptoJS.enc.Utf8))
+            }
+            else alert('Textarea is empty')
         }
     }
 })
