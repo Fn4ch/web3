@@ -2,6 +2,9 @@
 ## выполнено 7 пунктов из 9
 ## Project setup
 ```
+cd web3
+```
+```
 yarn install
 or
 npm i
